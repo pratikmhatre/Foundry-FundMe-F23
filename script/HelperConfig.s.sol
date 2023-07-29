@@ -16,6 +16,7 @@ contract HelperConfig is Script {
         } else if (block.chainid == 11155111) {
             activeConfig = getSepoliaConfig();
         } else {
+            //chainid = 31337
             activeConfig = getOrCreateAnvilConfig();
         }
     }
@@ -26,7 +27,7 @@ contract HelperConfig is Script {
 
     function getOrCreateAnvilConfig() internal returns (Config memory) {
         //if mock contract is already deployed on anvil, return its address
-        // if (activeConfig.priceFeed != address(0)) return activeConfig;
+        // if (activeConfig.priceFeed != address(0)) return existing pricefeed address;
 
         vm.startBroadcast();
         MockV3Aggregator mockAggregator = new MockV3Aggregator(
